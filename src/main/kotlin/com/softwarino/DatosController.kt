@@ -132,7 +132,7 @@ class DatosController {
 
        val usernameProperty = m.createProperty("http://www.sotomax.cps#emailPlayer")
 
-       val healthProperty = m.createProperty("http://www.sotomax.cps#ccurrentLife")
+       val healthProperty = m.createProperty("http://www.sotomax.cps#currentLife")
        val damageProperty = m.createProperty("http://www.sotomax.cps#damage")
 
        val nameSkillProperty = m.createProperty("http://www.sotomax.cps#nameSkill")
