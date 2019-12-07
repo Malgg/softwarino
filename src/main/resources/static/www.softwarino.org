@@ -1,0 +1,377 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.softwarino.org#"
+     xml:base="http://www.softwarino.org"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.softwarino.org"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#hasAchievement -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#hasAchievement">
+        <owl:inverseOf rdf:resource="http://purl.org/net/VideoGameOntology#isAchievementInGame"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#hasCharacter -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#hasCharacter">
+        <owl:inverseOf rdf:resource="http://purl.org/net/VideoGameOntology#isCharacterInGame"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#hasItem -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#hasItem">
+        <owl:inverseOf rdf:resource="http://purl.org/net/VideoGameOntology#isItemInGame"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#hasLeaderboard -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#hasLeaderboard">
+        <owl:inverseOf rdf:resource="http://purl.org/net/VideoGameOntology#isLeaderboardInGame"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#hasSkill -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#hasSkill">
+        <owl:inverseOf rdf:resource="http://purl.org/net/VideoGameOntology#isSkillInGame"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#involvesAchievement -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#involvesAchievement">
+        <owl:inverseOf rdf:resource="http://purl.org/net/VideoGameOntology#isAchievedInSession"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#involvesCharacter -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#involvesCharacter">
+        <owl:inverseOf rdf:resource="http://purl.org/net/VideoGameOntology#isCharacterInSession"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#involvesPlayer -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#involvesPlayer">
+        <owl:inverseOf rdf:resource="http://purl.org/net/VideoGameOntology#isPlayerInSession"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#isAchievedInSession -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#isAchievedInSession"/>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#isAchievementInGame -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#isAchievementInGame"/>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#isCharacterInGame -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#isCharacterInGame"/>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#isCharacterInSession -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#isCharacterInSession"/>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#isFriendWithPlayer -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#isFriendWithPlayer">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/knows"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/knows"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+        <owl:inverseOf rdf:resource="http://purl.org/net/VideoGameOntology#isFriendWithPlayer"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#isItemInGame -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#isItemInGame"/>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#isLeaderboardInGame -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#isLeaderboardInGame"/>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#isPlayerInSession -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#isPlayerInSession"/>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#isSkillInGame -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/net/VideoGameOntology#isSkillInGame"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/knows -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/knows"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/goodrelations/v1#ProductOrService -->
+
+    <owl:Class rdf:about="http://purl.org/goodrelations/v1#ProductOrService"/>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Achievement -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Achievement"/>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Collection -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Collection">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Completion -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Completion">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Curiosity -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Curiosity">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Fandom -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Fandom">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#GainEvent -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#GainEvent">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#GameEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#GameEvent -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#GameEvent">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#InstantaneousEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#GameProduct -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#GameProduct">
+        <rdfs:subClassOf rdf:resource="http://purl.org/goodrelations/v1#ProductOrService"/>
+        <rdfs:subClassOf rdf:resource="http://schema.org/Product"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#HardMode -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#HardMode">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#InAppPurchaseEvent -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#InAppPurchaseEvent">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#InstantaneousEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#InstantaneousEvent -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#InstantaneousEvent"/>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#LoseEvent -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#LoseEvent">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#GameEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Loyalty -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Loyalty">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Luck -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Luck">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#MenuEvent -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#MenuEvent">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#InstantaneousEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Minigame -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Minigame">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Multiplayer -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Multiplayer">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Paragon -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Paragon">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Player -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Player">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#PlayerEvent -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#PlayerEvent">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#InstantaneousEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#SpecialPlayStyle -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#SpecialPlayStyle">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Tutorial -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Tutorial">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Veteran -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Veteran">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/net/VideoGameOntology#Virtuosity -->
+
+    <owl:Class rdf:about="http://purl.org/net/VideoGameOntology#Virtuosity">
+        <rdfs:subClassOf rdf:resource="http://purl.org/net/VideoGameOntology#Achievement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://schema.org/Product -->
+
+    <owl:Class rdf:about="http://schema.org/Product"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Agent -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${tituloplayer}"></title>
+</head>
+<body>
+<h1 th:text="${tituloplayer}"></h1>
+<h4 th:text="${subtituloplayer}"></h4>
+<ul>
+    <li>Player ID:  <span th:text="${player.id_player}"></span></li>
+    <li>username:   <span th:text="${player.username}"></span></li>
+    <li>password:   <span th:text="${player.password}"></span></li>
+</ul>
+<h4 th:text="${subtituloperson}"></h4>
+<ul>
+    <li>health:  <span th:text="${person.health}"></span></li>
+    <li>armor:   <span th:text="${person.armor}"></span></li>
+    <li>damage:  <span th:text="${person.damage}"></span></li>
+    <li>oro:     <span th:text="${person.oro}"></span></li>
+    <li>hunger:  <span th:text="${person.hunger}"></span></li>
+    <li>thirst:  <span th:text="${person.thirst}"></span></li>
+</ul>
+    <h4 th:text="${subtituloinventory}"></h4>
+<ul>
+    <li th:each="item: ${inventory}"><a th:href="'/getdata/item/' + ${item.id_item}"  th:text="${item.name}"></a></li>
+</ul>
+<script type="application/ld+json" th:utext="${jsonld}" ></script>
+</body>
+</html>

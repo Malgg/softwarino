@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LISTA DE USUARIOS</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>usuario</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="player: ${players}">
+        <td th:text="${player.id_player}"></td>
+        <td><a th:href="'/getdata/player/' + ${player.id_player}" th:text="${player.username}"></a></td>
+    </tr>
+    </tbody>
+</table>
+<br><hr><br>
+<form class="container" th:action="@{/getdata/players/save}" th:object="${newData}" method="post">
+    <div class="form-group row">
+        <label for="url" class="col-sm-2 col-form-label">Url: </label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" id="url" name="url" placeholder="Ingresa la URI de tu cuenta"><br><br>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="username" class="col-sm-2 col-form-label">Nombre de Usuario: </label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" id="username" name="username" placeholder="Ingresa tu nuevo nombre de ususario"><br><br>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Contraseña: </label>
+        <div class="col-sm-10">
+            <input class="form-control" type="password" id="password" name="password" placeholder="Ingresa tu contraseña"><br><br>
+        </div>
+    </div>
+    <input class="btn btn-primary float-right" type="submit" value="Guardar">
+</form>
+<br>
+</body>
+</html>
