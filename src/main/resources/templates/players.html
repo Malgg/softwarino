@@ -5,6 +5,7 @@
     <title>LISTA DE USUARIOS</title>
 </head>
 <body>
+<h2>LISTA DE USUARIOS</h2>
 <table border="1">
     <thead>
     <tr>
@@ -20,17 +21,13 @@
     </tbody>
 </table>
 <br><hr><br>
+<h2>REGISTRESE DESDE EL JUEGO SOTOMAX</h2>
+<h5>Conserva su mismo correo</h5>
 <form class="container" th:action="@{/getdata/players/save}" th:object="${newData}" method="post">
     <div class="form-group row">
         <label for="url" class="col-sm-2 col-form-label">Url: </label>
         <div class="col-sm-10">
             <input class="form-control" type="text" id="url" name="url" placeholder="Ingresa la URI de tu cuenta"><br><br>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="username" class="col-sm-2 col-form-label">Nombre de Usuario: </label>
-        <div class="col-sm-10">
-            <input class="form-control" type="text" id="username" name="username" placeholder="Ingresa tu nuevo nombre de ususario"><br><br>
         </div>
     </div>
     <div class="form-group row">

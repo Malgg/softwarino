@@ -6,7 +6,7 @@ import javax.persistence.*
 @Table(name = "person")
 class person (
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.AUTO)
         val id_person: Long? = null,
         val health: Int,
         val armor: Int,

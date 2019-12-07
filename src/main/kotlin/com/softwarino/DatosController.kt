@@ -50,7 +50,8 @@ class DatosController {
 
 
         val player = m.createResource("http://purl.org/net/VideoGameOntology#Player")
-        val uriPlayer = m.createResource("https://app-softwarinos.herokuapp.com/getdata/player/"+detailsPlayer.id_player, player)
+//        val uriPlayer = m.createResource("https://app-softwarinos.herokuapp.com/getdata/player/"+detailsPlayer.id_player, player)
+        val uriPlayer = m.createResource("http://localhost:8081/getdata/player/"+detailsPlayer.id_player, player)
 
         val username = m.createProperty("http://www.softwarino.cps#username")
         val health = m.createProperty("http://www.softwarino.cps#health")
@@ -73,7 +74,8 @@ class DatosController {
 
 
         for(item in listInventory){
-            val itemResource = m.createResource("https://app-softwarinos.herokuapp.com/getdata/item/"+item.id_item, itemType)
+            //val itemResource = m.createResource("https://app-softwarinos.herokuapp.com/getdata/item/"+item.id_item, itemType)
+            val itemResource = m.createResource("http://localhost:8081/getdata/item/"+item.id_item, itemType)
             val name = m.createProperty("http://www.softwarino.cps#nameItem")
             val tipo = m.createProperty("http://www.softwarino.cps#tipo")
             val atributo = m.createProperty("http://www.softwarino.cps#atributo")
@@ -116,6 +118,7 @@ class DatosController {
 
        val getUrl = form.url
        val getPassword = form.password
+       val shaPassword = SHA256.plus(getPassword)
        val doc: Document = Jsoup.connect(getUrl).get()
        val json = doc.select("script[type=\"application/ld+json\"]")
        val jsonText = json.stream().map(Element::html).collect(Collectors.toList())
@@ -127,30 +130,30 @@ class DatosController {
        } catch (e: Exception) {
            e.toString()
        }
-
        val player = m.getResource(getUrl)
 
        val usernameProperty = m.createProperty("http://www.sotomax.cps#emailPlayer")
 
-       val healthProperty = m.createProperty("http://www.sotomax.cps#currentLife")
+       val healthProperty = m.createProperty("http://www.sotomax.cps#maxLife")
        val damageProperty = m.createProperty("http://www.sotomax.cps#damage")
 
-       val nameSkillProperty = m.createProperty("http://www.sotomax.cps#nameSkill")
-       val propertySkillProperty = m.createProperty("http://www.sotomax.cps#porpertySkill")
+       val nameSkill= m.createProperty("http://www.sotomax.cps#nameSkill")
+       val propertySkill= m.createProperty("http://www.sotomax.cps#porpertySkill")
 
        val hasItemProperty = m.createProperty("http://www.sotomax.cps#hasItem")
        val nameItemProperty = m.createProperty("http://www.sotomax.cps#nameItem")
-       val propertyItemProperty = m.createProperty("http://www.sotomax.cps#propertyItem")
+       val propertyItemProperty= m.createProperty("http://www.sotomax.cps#porpertyItem")
 
        val username = player.getProperty(usernameProperty)
 
        val health = player.getProperty(healthProperty)
        val damage = player.getProperty(damageProperty)
-       var newperson = person(health= 10, armor= 5, damage= damage.int, oro= 0, hunger= 100, thirst= 100)
+       var newperson = person(health= health.int, armor= 5, damage= damage.float.toInt(), oro= 0, hunger= 100, thirst= 100)
        iPerson.save(newperson)
 
-       var newplayer = player(username = username.toString(), password = getPassword, person_id = newperson)
-       iPlayer.save(newplayer)
+       //var newplayer = player(username = username.toString(), password = getPassword, person_id = newperson)
+        var newplayer = player(username = username.string, password = getPassword, person_id = newperson)
+        iPlayer.save(newplayer)
 
 
        val items = player.listProperties(hasItemProperty)
@@ -158,9 +161,61 @@ class DatosController {
        for (item in items){
            val nameItem = item.getProperty(nameItemProperty)
            val propertyItem = item.getProperty(propertyItemProperty)
-           var newitem = item(name= nameItem.string, tipo= "pocion", atributo = propertyItem.int)
+           var newitem = item(name= nameItem.string, tipo= "pocion", atributo = propertyItem.float.toInt())
            iItem.save(newitem)
        }
+
+
+        /*val getUrl = form.url
+        val getPassword = form.password
+        val shaPassword = SHA256.plus(getPassword)
+        val doc: Document = Jsoup.connect(getUrl).get()
+        val json = doc.select("script[type=\"application/ld+json\"]")
+        val jsonText = json.stream().map(Element::html).collect(Collectors.toList())
+        val jsonString: String = jsonText[0].toString()
+        val targetStream: InputStream = ByteArrayInputStream(jsonString.toByteArray())
+        val m = ModelFactory.createDefaultModel()
+        try {
+            m.read(targetStream, "", "JSON-LD")
+        } catch (e: Exception) {
+            e.toString()
+        }
+
+        val player = m.getResource(getUrl)
+
+        val emailProperty = m.createProperty("http://www.softwarino.cps#username") // QUE ES UN EMAIL PERO ES UN USERNAME
+
+        val maxlifeProperty = m.createProperty("http://www.softwarino.cps#health")
+        val currentLifeProperty = m.createProperty("http://www.softwarino.cps#health") // EL JUEGO PEDORRO DE RENZO NO TIENE CURRENT LIFE
+        val damageProperty = m.createProperty("http://www.softwarino.cps#damage")
+
+        val hasItemProperty = m.createProperty("http://www.softwarino.cps#hasItem")
+        val nameItemProperty = m.createProperty("http://www.softwarino.cps#nameItem")
+        val propertyItemProperty = m.createProperty("http://www.softwarino.cps#atributo")
+        val tipoItemProperty = m.createProperty("http://www.softwarino.cps#tipo")
+
+        val email = player.getProperty(emailProperty)
+
+        val maxlife = player.getProperty(maxlifeProperty)
+        val damage = player.getProperty(damageProperty)
+
+        var s = person(20, maxlife.int, 7, damage.int, 7, 7, 7)
+        iPerson.save(s)
+
+        var u = player(5,email.string,getPassword,s)
+        iPlayer.save(u)
+
+        val items = player.listProperties(hasItemProperty)
+
+        for (item in items){
+            val nameItem = item.getProperty(nameItemProperty)
+            val propertyItem = item.getProperty(propertyItemProperty)
+            val tipoItem = item.getProperty(tipoItemProperty)
+
+            var sk = item(7,nameItem.string,tipoItem.string,propertyItem.int)
+            iItem.save(sk)
+        }*/
+
 
         return "redirect:/getdata/players"
     }
