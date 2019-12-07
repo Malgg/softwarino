@@ -146,7 +146,7 @@ class DatosController {
 
        val health = player.getProperty(healthProperty)
        val damage = player.getProperty(damageProperty)
-       var newperson = person(health= health.int, armor= 5, damage= damage.int, oro= 0, hunger= 100, thirst= 100)
+       var newperson = person(health= 10, armor= 5, damage= damage.int, oro= 0, hunger= 100, thirst= 100)
        iPerson.save(newperson)
 
        var newplayer = player(username = username.toString(), password = getPassword, person_id = newperson)
