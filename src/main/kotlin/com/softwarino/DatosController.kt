@@ -128,11 +128,11 @@ class DatosController {
            e.toString()
        }
 
-       val user = m.getResource(getUrl)
+       val player = m.getResource(getUrl)
 
        val usernameProperty = m.createProperty("http://www.sotomax.cps#emailPlayer")
 
-       val healthProperty = m.createProperty("http://www.sotomax.cps#maxLife")
+       val healthProperty = m.createProperty("http://www.sotomax.cps#ccurrentLife")
        val damageProperty = m.createProperty("http://www.sotomax.cps#damage")
 
        val nameSkillProperty = m.createProperty("http://www.sotomax.cps#nameSkill")
@@ -142,10 +142,10 @@ class DatosController {
        val nameItemProperty = m.createProperty("http://www.sotomax.cps#nameItem")
        val propertyItemProperty = m.createProperty("http://www.sotomax.cps#propertyItem")
 
-       val username = user.getProperty(usernameProperty)
+       val username = player.getProperty(usernameProperty)
 
-       val health = user.getProperty(healthProperty)
-       val damage = user.getProperty(damageProperty)
+       val health = player.getProperty(healthProperty)
+       val damage = player.getProperty(damageProperty)
        var newperson = person(health= health.int, armor= 5, damage= damage.int, oro= 0, hunger= 100, thirst= 100)
        iPerson.save(newperson)
 
@@ -153,7 +153,7 @@ class DatosController {
        iPlayer.save(newplayer)
 
 
-       val items = user.listProperties(hasItemProperty)
+       val items = player.listProperties(hasItemProperty)
 
        for (item in items){
            val nameItem = item.getProperty(nameItemProperty)
