@@ -48,7 +48,7 @@ class DatosController {
 
 
         val player = m.createResource("http://purl.org/net/VideoGameOntology#Player")
-        val uriPlayer = m.createResource("https://app-softwarinos.herokuapp.com/getdata/user/"+detailsPlayer.id_player, player)
+        val uriPlayer = m.createResource("https://app-softwarinos.herokuapp.com/getdata/player/"+detailsPlayer.id_player, player)
 
         val username = m.createProperty("http://www.softwarino.cps#username")
         val health = m.createProperty("http://www.softwarino.cps#health")
