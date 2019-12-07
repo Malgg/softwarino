@@ -5,18 +5,20 @@ import com.softwarino.Interface.Iinventory
 import com.softwarino.Interface.Iitem
 import com.softwarino.Interface.Iperson
 import com.softwarino.Interface.Iplayer
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
 import org.apache.jena.rdf.model.ModelFactory
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.io.StringWriter
+import java.security.MessageDigest
 import java.util.stream.Collectors
+import javax.xml.crypto.dsig.DigestMethod.SHA256
 
 @Controller
 @RequestMapping("/getdata")
@@ -112,60 +114,54 @@ class DatosController {
     @PostMapping("/players/save")
     fun newUser(model: Model, @ModelAttribute("sendUrl") form: formurl): String{
 
-        val getUrl = form.url
-        val getUsername = form.username
-        val getPassword = form.password
-        val doc: Document = Jsoup.connect(getUrl).get()
-        val json = doc.select("script[type=\"application/ld+json\"]")
-        val jsonText = json.stream().map(Element::html).collect(Collectors.toList())
-        val jsonString: String = jsonText[0].toString()
-        val targetStream: InputStream = ByteArrayInputStream(jsonString.toByteArray())
-        val m = ModelFactory.createDefaultModel()
-        try {
-            m.read(targetStream, "", "JSON-LD")
-        } catch (e: Exception) {
-            e.toString()
-        }
+       val getUrl = form.url
+       val getPassword = form.password
+       val doc: Document = Jsoup.connect(getUrl).get()
+       val json = doc.select("script[type=\"application/ld+json\"]")
+       val jsonText = json.stream().map(Element::html).collect(Collectors.toList())
+       val jsonString: String = jsonText[0].toString()
+       val targetStream: InputStream = ByteArrayInputStream(jsonString.toByteArray())
+       val m = ModelFactory.createDefaultModel()
+       try {
+           m.read(targetStream, "", "JSON-LD")
+       } catch (e: Exception) {
+           e.toString()
+       }
 
-        val player = m.getResource(getUrl)
+       val user = m.getResource(getUrl)
 
-        val usernameProperty = m.createProperty("http://www.softwarino.cps#username")
+       val usernameProperty = m.createProperty("http://www.sotomax.cps#emailPlayer")
 
-        val healthProperty = m.createProperty("http://www.softwarino.cps#health")
-        val armorProperty = m.createProperty("http://www.softwarino.cps#armor")
-        val damageProperty = m.createProperty("http://www.softwarino.cps#damage")
-        val oroProperty = m.createProperty("http://www.softwarino.cps#oro")
-        val hungerProperty = m.createProperty("http://www.softwarino.cps#hunger")
-        val thirstProperty = m.createProperty("http://www.softwarino.cps#thirst")
+       val healthProperty = m.createProperty("http://www.sotomax.cps#maxLife")
+       val damageProperty = m.createProperty("http://www.sotomax.cps#damage")
 
+       val nameSkillProperty = m.createProperty("http://www.sotomax.cps#nameSkill")
+       val propertySkillProperty = m.createProperty("http://www.sotomax.cps#porpertySkill")
 
-        val hasItemProperty = m.createProperty("http://www.softwarino.cps#hasItem")
-        val nameItemProperty = m.createProperty("http://www.softwarino.cps#nameItem")
-        val tipoProperty = m.createProperty("http://www.softwarino.cps#tipo")
-        val atributoProperty = m.createProperty("http://www.softwarino.cps#atributo")
+       val hasItemProperty = m.createProperty("http://www.sotomax.cps#hasItem")
+       val nameItemProperty = m.createProperty("http://www.sotomax.cps#nameItem")
+       val propertyItemProperty = m.createProperty("http://www.sotomax.cps#propertyItem")
 
-        val health = player.getProperty(healthProperty)
-        val armor = player.getProperty(armorProperty)
-        val damage = player.getProperty(damageProperty)
-        val oro = player.getProperty(oroProperty)
-        val hunger = player.getProperty(hungerProperty)
-        val thirst = player.getProperty(thirstProperty)
-        var newperson = person(health= health.int,  armor= armor.int, damage= damage.int, oro= oro.int, hunger= hunger.int, thirst= thirst.int)
-        iPerson.save(newperson)
+       val username = user.getProperty(usernameProperty)
 
-        val username = player.getProperty(usernameProperty)
-        var newplayer = player(username = getUsername, password = getPassword, person_id = newperson)
-        iPlayer.save(newplayer)
+       val health = user.getProperty(healthProperty)
+       val damage = user.getProperty(damageProperty)
+       var newperson = person(health= health.int, armor= 5, damage= damage.int, oro= 0, hunger= 100, thirst= 100)
+       iPerson.save(newperson)
+
+       var newplayer = player(username = username.toString(), password = getPassword, person_id = newperson)
+       iPlayer.save(newplayer)
 
 
-        val items = player.listProperties(hasItemProperty)
+       val items = user.listProperties(hasItemProperty)
 
-        for (item in items){
-            val nameItem = item.getProperty(nameItemProperty)
-            val tipo = item.getProperty(tipoProperty)
-            val atributo = item.getProperty(atributoProperty)
-            //NO SE QUE PONER ACA PARA LOS ITEMS
-        }
+       for (item in items){
+           val nameItem = item.getProperty(nameItemProperty)
+           val propertyItem = item.getProperty(propertyItemProperty)
+           var newitem = item(name= nameItem.string, tipo= "pocion", atributo = propertyItem.int)
+           iItem.save(newitem)
+       }
+
         return "redirect:/getdata/players"
     }
 
