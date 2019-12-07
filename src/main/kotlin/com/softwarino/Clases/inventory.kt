@@ -6,7 +6,7 @@ import javax.persistence.*
 @Table(name = "inventory")
 class inventory (
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id_inventory : Long? = null,
     val slot: Int,
     @OneToOne(cascade = [CascadeType.ALL])
