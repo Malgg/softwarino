@@ -48,7 +48,7 @@ class DatosController {
 
 
         val player = m.createResource("http://purl.org/net/VideoGameOntology#Player")
-        val uriPlayer = m.createResource("http://app-softwarinos.herokuapp.com/getdata/user/"+detailsPlayer.id_player, player)
+        val uriPlayer = m.createResource("https://app-softwarinos.herokuapp.com/getdata/user/"+detailsPlayer.id_player, player)
 
         val username = m.createProperty("http://www.softwarino.cps#username")
         val health = m.createProperty("http://www.softwarino.cps#health")
@@ -71,7 +71,7 @@ class DatosController {
 
 
         for(item in listInventory){
-            val itemResource = m.createResource("http://app-softwarinos.herokuapp.com/getdata/item/"+item.id_item, itemType)
+            val itemResource = m.createResource("https://app-softwarinos.herokuapp.com/getdata/item/"+item.id_item, itemType)
             val name = m.createProperty("http://www.softwarino.cps#nameItem")
             val tipo = m.createProperty("http://www.softwarino.cps#tipo")
             val atributo = m.createProperty("http://www.softwarino.cps#atributo")
